@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
-
-
-import Card from 'react-bootstrap/Card';
+import React, { useEffect, useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
-import ListGroup from 'react-bootstrap/ListGroup';
 import Row from 'react-bootstrap/Row';
-import { LinkContainer } from 'react-router-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { initializeCountries } from '../features/countries/countriesSlice';
+import CountryCard from './CountryCard';
 
 const Countries = () => {
+  const dispatch = useDispatch();
+  const countriesList = useSelector((state) => state.countries.countries);
+  const loading = useSelector((state) => state.countries.isLoading);
+
+  console.log("CountriesList = ", countriesList)
+
   const [search, setSearch] = useState('')
 
   console.log("Search: ", search)
 
-  // We will be replacing this with data from our API.
-  const country = {
-    name: {
-      common: 'Example Country'
-    }
-  }
+  useEffect(() => {
+    dispatch(initializeCountries())
+  },
+  [dispatch])
 
   return (
     <Container fluid>
@@ -38,36 +40,19 @@ const Countries = () => {
         </Col>
       </Row>
       <Row xs={2} md={3} lg={4} className=" g-3">
-            <Col className="mt-5">
-              <LinkContainer
-                to={`/countries/${country.name.common}`}
-                state={{ country: country }}
-              >
-                <Card className="h-100">
-                  <Card.Body className="d-flex flex-column">
-                    <Card.Title>{'Single Country Common Name'}</Card.Title>
-                    <Card.Subtitle className="mb-5 text-muted">
-                      {'Single Country Official Name'}
-                    </Card.Subtitle>
-                    <ListGroup
-                      variant="flush"
-                      className="flex-grow-1 justify-content-end"
-                    >
-                      <ListGroup.Item>
-                        <i className="bi bi-translate me-2"></i>
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        <i className="bi bi-cash-coin me-2"></i>
-                      </ListGroup.Item>
-
-                      <ListGroup.Item>
-                        <i className="bi bi-people me-2"></i>
-                      </ListGroup.Item>
-                    </ListGroup>
-                  </Card.Body>
-                </Card>
-              </LinkContainer>
-            </Col>
+      {/* {countriesList.reduce((acc, country) => {
+            if (country.name.official.toLowerCase().includes(search.toLowerCase())) {
+             acc.push(<CountryCard key={country.name} country={country} />);
+          }
+          return acc;
+          }, [])} */}
+        {countriesList
+          .filter((c) => {
+            return c.name.official.toLowerCase().includes(search.toLowerCase());
+          })
+          .map((country) => (
+            <CountryCard key={country.name.common} country={country} />
+          ))}
       </Row>
     </Container>
   );
