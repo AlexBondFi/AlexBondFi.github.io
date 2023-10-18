@@ -37,6 +37,7 @@ const Login = () => {
                 Don't have an account?
                 <Link to="/register">Register</Link>
             </div>
+            Account for testing: admin@admin.com pass: 12345678
         </div>
     )
 
