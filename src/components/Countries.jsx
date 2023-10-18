@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 import { useDispatch, useSelector } from 'react-redux';
 import { initializeCountries } from '../features/countries/countriesSlice';
 import CountryCard from './CountryCard';
+import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
+
 
 const Countries = () => {
   const dispatch = useDispatch();
   const countriesList = useSelector((state) => state.countries.countries);
   const loading = useSelector((state) => state.countries.isLoading);
 
-  console.log("CountriesList = ", countriesList)
-
   const [search, setSearch] = useState('')
-
-  console.log("Search: ", search)
 
   useEffect(() => {
     dispatch(initializeCountries())
   },
   [dispatch])
+
+  if (loading) {
+    return (
+        <Col className="text-center m-5">
+    <Spinner
+      animation="border"
+      role="status"
+      className="center"
+      variant="info"
+    >
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
+  </Col>
+    )
+}
 
   return (
     <Container fluid>

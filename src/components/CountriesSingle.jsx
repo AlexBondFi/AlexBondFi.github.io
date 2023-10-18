@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Image, Row, Spinner } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
+import GoogleMapComponent from './Map';
+
 
 const CountriesSingle = () => {
   // Function hooks
@@ -15,6 +17,8 @@ const CountriesSingle = () => {
   
   // Destructuring variables
   const country = location.state.country;
+  const [lat, lng] = country.capitalInfo.latlng;
+
 
   useEffect(() => {
     if (!country.capital) {
@@ -24,7 +28,6 @@ const CountriesSingle = () => {
       
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${country.capital}&units=metric&appid=${process.env.REACT_APP_OPENWEATHER_KEY}`)
     .catch((error) => {
-      console.log(error)
       setError(true)
     })
     .then((res) => {
@@ -35,8 +38,6 @@ const CountriesSingle = () => {
     })
     }
   }, [country.capital])
-
-  console.log("Weather: ", weather);
 
   if (loading) {
     return (
@@ -58,6 +59,7 @@ const CountriesSingle = () => {
       <Row className="mt-5">
         <Col>
         <Image thumbnail src={`https://source.unsplash.com/1600x900/?${country.capital}`} />
+        <GoogleMapComponent lat={lat} lng={lng}/>
         </Col>
         <Col>
         <h2 className="display-4">{country.name.common}</h2>
@@ -79,8 +81,8 @@ const CountriesSingle = () => {
         </Col>
       </Row>
       <Row>
-        <Col>
-         <Button variant="light" onClick={() => navigate('/countries')}>
+        <Col className="d-flex justify-content-end">
+         <Button variant="primary" onClick={() => navigate('/countries')}>
           Back to Countries
          </Button>
         </Col>

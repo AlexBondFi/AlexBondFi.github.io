@@ -8,29 +8,31 @@ import { auth, loginWithEmailAndPassword } from "../auth/firebase";
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (loading) return;
         if (user) navigate('/countries')
-    },[user, loading])
+    },[user, loading, navigate])
 
     return (
-        <div>
-            <input
+        <div className="loginform">
+            <h3>Welcome</h3>
+            <p>Please login to see the content</p>
+            <input className="inputfield"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
             />
-            <input
+            <input className="inputfield"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
             />
-            <Button onClick={() => loginWithEmailAndPassword(email, password)}>Login</Button>
+            <Button className="my-3" onClick={() => loginWithEmailAndPassword(email, password)}>Login</Button>
             <div>
                 Don't have an account?
                 <Link to="/register">Register</Link>

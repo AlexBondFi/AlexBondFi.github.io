@@ -55,11 +55,11 @@ const Favourites = () => {
             </Form>
           </Col>
         </Row>
-        <Row xs={2} md={3} lg={4} className=" g-3">
-        <Button onClick={() => {
-          dispatch(clearFavourites())
-        }}>Clear Favourites</Button>
-      </Row>
+        <Row xs={2} md={3} lg={4} className=" g-3 d-flex justify-content-center">
+          <Button onClick={() => {
+            dispatch(clearFavourites())
+          }}>Clear Favourites</Button>
+        </Row>
         <Row xs={2} md={3} lg={4} className=" g-3">
           {countriesList
             .filter((c) => {

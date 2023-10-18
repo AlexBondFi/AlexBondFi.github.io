@@ -8,7 +8,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('')
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
 
     const register = () => {
@@ -19,10 +19,12 @@ const Register = () => {
     useEffect(() => {
         if (loading) return;
         if (user) navigate('/countries')
-    },[user, loading])
+    },[user, loading, navigate])
 
     return (
-        <div>
+        <div className="loginform">
+            <h3>Welcome</h3>
+            <p>Please register to see the content</p>
             <input
                 type="text"
                 value={name}
@@ -41,7 +43,7 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
             />
-            <Button onClick={register}>Register</Button>
+            <Button className="my-3" onClick={register}>Register</Button>
             <div>
                 Already have an account?
                 <Link to="/login">Login</Link>
