@@ -36,6 +36,7 @@ const Countries = () => {
     <Container fluid>
       <Row>
         <Col className="mt-5 d-flex justify-content-center">
+          <span style={{ fontSize: '3rem' }}>🌎</span>             
           <Form>
             <Form.Control
               style={{ width: '18rem' }}

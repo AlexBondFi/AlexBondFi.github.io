@@ -7,12 +7,12 @@ import { addDoc, collection, getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAvpVxeKu7WXmAqN3ezsrWiVlhFp7NW9Gs",
+  apiKey: "AIzaSyAzfvslyOXsglB5ODOoQsUzR8LeWdS9urU",
   authDomain: "countries-react23k.firebaseapp.com",
   projectId: "countries-react23k",
   storageBucket: "countries-react23k.appspot.com",
-  messagingSenderId: "561421813788",
-  appId: "1:561421813788:web:cfdbac78916272516177d9"
+  messagingSenderId: "1017160148739",
+  appId: "1:1017160148739:web:6149f81c41e63a50d66b36"
 };
 
 // Initialize Firebase

@@ -19,7 +19,7 @@ code {
 .banner{
   background-image: url(/src/media/map-banner.jpeg);
   background-size: cover;
-  height: 1250px;
+  height: 93vh;
   display: flex;
   justify-content: center;
 }
