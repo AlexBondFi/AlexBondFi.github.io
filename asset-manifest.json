@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/AlexBondFi.github.io/static/css/main.6805f444.css",
+    "main.js": "/AlexBondFi.github.io/static/js/main.1a064d45.js",
+    "static/media/map-banner.jpeg": "/AlexBondFi.github.io/static/media/map-banner.d9e9439c7be11447ba05.jpeg",
+    "static/media/bootstrap-icons.woff?": "/AlexBondFi.github.io/static/media/bootstrap-icons.e559bf06bc84fd9525e6.woff",
+    "static/media/bootstrap-icons.woff2?": "/AlexBondFi.github.io/static/media/bootstrap-icons.ea98e12d2d58747f9fc5.woff2",
+    "index.html": "/AlexBondFi.github.io/index.html",
+    "main.6805f444.css.map": "/AlexBondFi.github.io/static/css/main.6805f444.css.map",
+    "main.1a064d45.js.map": "/AlexBondFi.github.io/static/js/main.1a064d45.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6805f444.css",
+    "static/js/main.1a064d45.js"
+  ]
+}
